@@ -149,7 +149,7 @@ const CONFIG = {
 
         animations: {
             enableParticles: true,
-            enableSparkles: true,
+            enableSparkles: false,
             particleCount: 50,
             sparkleInterval: 3000
         },
