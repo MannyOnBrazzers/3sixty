@@ -362,18 +362,27 @@ function populateContent() {
 }
 
 function updateMetaTag(name, content) {
-    let meta = document.querySelector(`meta[name="${name}"]`);
-    if (!meta) {
-        meta = document.createElement('meta');
-        meta.name = name;
-        document.head.appendChild(meta);
+    try {
+        let meta = document.querySelector(`meta[name="${name}"]`);
+        if (!meta) {
+            meta = document.createElement('meta');
+            meta.name = name;
+            document.head.appendChild(meta);
+        }
+        meta.content = content;
+    } catch (error) {
+        console.warn('Error updating meta tag:', name, error);
     }
-    meta.content = content;
 }
 
 function populateContactSection() {
     const config = window.SITE_CONFIG;
     const contactGrid = document.getElementById('contact-grid');
+
+    if (!contactGrid) {
+        console.warn('Contact grid element not found');
+        return;
+    }
 
     const contactItems = [
         {
@@ -419,6 +428,11 @@ function populateServicesSection() {
     const config = window.SITE_CONFIG;
     const servicesGrid = document.getElementById('services-grid');
 
+    if (!servicesGrid) {
+        console.warn('Services grid element not found');
+        return;
+    }
+
     if (!config.settings.features.showServicesSection) {
         document.querySelector('.services-preview').style.display = 'none';
         return;
@@ -441,6 +455,11 @@ function populateFooter() {
     const config = window.SITE_CONFIG;
     const footerCopyright = document.getElementById('footer-copyright');
     const socialLinks = document.getElementById('social-links');
+
+    if (!footerCopyright || !socialLinks) {
+        console.warn('Footer elements not found');
+        return;
+    }
 
     footerCopyright.textContent = `© ${config.settings.footer.copyrightYear} ${config.business.fullName}. ${config.settings.footer.copyrightText}`;
 
@@ -630,55 +649,92 @@ function initTypingEffect() {
     setTimeout(typeWriter, 1500);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+function tryInitialize() {
+    const maxAttempts = 10;
+    let attempts = 0;
+
+    function attemptInit() {
+        attempts++;
+
+        if (typeof window.SITE_CONFIG === 'undefined') {
+            if (attempts < maxAttempts) {
+                console.log(`Config not ready, attempt ${attempts}/${maxAttempts}, retrying...`);
+                setTimeout(attemptInit, 100);
+                return;
+            } else {
+                console.error('Configuration failed to load after maximum attempts');
+                return;
+            }
+        }
+
+        console.log('Configuration loaded successfully, initializing...');
+
+        try {
+            populateContent();
+
+            const config = window.SITE_CONFIG;
+            let particleSystem;
+
+            if (config.settings.animations.enableParticles) {
+                particleSystem = new ParticleSystem();
+                particleSystem.particleCount = config.settings.animations.particleCount;
+
+                window.addEventListener('resize', () => {
+                    particleSystem.resize();
+                });
+            }
+
+            initSmoothScrolling();
+            initScrollAnimations();
+            initContactForm();
+            animateProgressBar();
+            initTypingEffect();
+
+            setTimeout(() => {
+                const serviceItems = document.querySelectorAll('.service-item');
+                serviceItems.forEach(item => {
+                    item.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-10px) scale(1.02)';
+                    });
+
+                    item.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    });
+                });
+
+                const logo = document.querySelector('.logo-placeholder');
+                if (logo) {
+                    logo.addEventListener('click', function() {
+                        this.style.animation = 'none';
+                        setTimeout(() => {
+                            this.style.animation = 'bounce 0.6s ease';
+                        }, 10);
+                    });
+                }
+            }, 500);
+
+            if (config.settings.animations.enableSparkles) {
+                setInterval(() => {
+                    createSparkle();
+                }, config.settings.animations.sparkleInterval);
+            }
+
+            console.log('Website initialization completed successfully');
+
+        } catch (error) {
+            console.error('Error during initialization:', error);
+        }
+    }
+
+    attemptInit();
+}
+
+document.addEventListener('DOMContentLoaded', tryInitialize);
+
+window.addEventListener('load', function() {
     if (typeof window.SITE_CONFIG === 'undefined') {
-        console.error('Configuration not loaded. Make sure config.js is included before script.js');
-        return;
-    }
-
-    populateContent();
-
-    const config = window.SITE_CONFIG;
-    let particleSystem;
-
-    if (config.settings.animations.enableParticles) {
-        particleSystem = new ParticleSystem();
-        particleSystem.particleCount = config.settings.animations.particleCount;
-
-        window.addEventListener('resize', () => {
-            particleSystem.resize();
-        });
-    }
-
-    initSmoothScrolling();
-    initScrollAnimations();
-    initContactForm();
-    animateProgressBar();
-    initTypingEffect();
-
-    const serviceItems = document.querySelectorAll('.service-item');
-    serviceItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-
-    const logo = document.querySelector('.logo-placeholder');
-    logo.addEventListener('click', function() {
-        this.style.animation = 'none';
-        setTimeout(() => {
-            this.style.animation = 'bounce 0.6s ease';
-        }, 10);
-    });
-
-    if (config.settings.animations.enableSparkles) {
-        setInterval(() => {
-            createSparkle();
-        }, config.settings.animations.sparkleInterval);
+        console.log('Backup initialization triggered');
+        setTimeout(tryInitialize, 200);
     }
 });
 
