@@ -44,7 +44,6 @@ temp/
 .env.production.local
 
 # API keys (if you add any config files later)
-config.js
 keys.js
 
 # Backup files
