@@ -3,92 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3Sixty Auto Collision & Paint - Coming Soon</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>3Sixty Auto Collision & Paint - Auto Body Repair in Winter Haven, FL</title>
+    <meta name="description" content="Professional auto collision repair, paint & color matching, and dent repair in Winter Haven, FL. Insurance-friendly and OEM quality standards.">
+    <meta name="keywords" content="auto collision repair, auto paint, dent repair, Winter Haven FL, auto body shop, insurance claims, frame straightening">
+    <link rel="canonical" href="https://3sixtyac.com">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="3Sixty Auto Collision & Paint - Professional Auto Body Repair">
+    <meta property="og:description" content="Factory-level restoration with a 360° approach. Insurance-friendly auto collision repair in Winter Haven, FL.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://3sixtyac.com">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="css/services.css" as="style">
+    <link rel="preload" href="css/gallery.css" as="style">
+    <link rel="preload" href="css/insurance.css" as="style">
+    <link rel="preload" href="css/estimates.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/services.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/insurance.css">
+    <link rel="stylesheet" href="css/estimates.css">
+
+    <!--Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AutoRepair",
+        "name": "3Sixty Auto Collision & Paint",
+        "description": "Auto collision repair and paint services in Winter Haven, FL",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "3911 Dundee Rd",
+            "addressLocality": "Winter Haven",
+            "addressRegion": "FL",
+            "postalCode": "33884"
+        },
+        "telephone": "(407) 307-8050",
+        "openingHours": "Mo-Fr 09:00-17:00, Sa Appointments Only, Su Closed",
+        "priceRange": "$$",
+        "areaServed": "Winter Haven, FL",
+        "serviceType": ["Auto Collision Repair", "Auto Paint", "Dent Repair", "Frame Straightening"]
+    }
+    </script>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="logo-container">
-                <div class="logo-placeholder" id="logo-container">
-                    <i class="fas fa-car" id="logo-icon"></i>
-                    <span id="logo-text">3Sixty</span>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav" aria-label="Main navigation">
+            <div class="nav-container">
+                <img src="assets/logo.png" alt="3Sixty Auto Collision logo" class="logo" loading="eager">
+
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+
+                <ul class="nav-menu" role="menubar">
+                    <li role="none"><a href="/" class="nav-link" role="menuitem">Home</a></li>
+                    <li role="none"><a href="html/services.html" class="nav-link" role="menuitem">Services</a></li>
+                    <li role="none"><a href="html/gallery.html" class="nav-link" role="menuitem">Gallery</a></li>
+                    <li role="none"><a href="html/insurance.html" class="nav-link" role="menuitem">Insurance</a></li>
+                    <li role="none"><a href="html/estimates.html" class="nav-link" role="menuitem">Estimates</a></li>
+                    <li role="none"><a href="html/about.html" class="nav-link" role="menuitem">About</a></li>
+                    <li role="none"><a href="html/contact.html" class="nav-link" role="menuitem">Contact</a></li>
+                </ul>
+
+                <div class="nav-cta">
+                    <button class="nav-theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <i class="fas fa-moon theme-icon"></i>
+                    </button>
+                    <a href="tel:4073078050" class="btn btn-primary"><i class="fas fa-phone"></i> Call Now</a>
                 </div>
             </div>
-        </header>
+        </nav>
+    </header>
 
-        <main class="main-content">
-            <section class="hero">
-                <div class="construction-icon">
-                    <i class="fas fa-hard-hat"></i>
-                </div>
-                <h1 class="hero-title" id="hero-title">Website Under Construction</h1>
-                <p class="hero-subtitle" id="hero-subtitle">We're building something amazing for 3Sixty Auto Collision & Paint</p>
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-                <p class="progress-text" id="progress-text">Coming Soon...</p>
-            </section>
-
-            <section class="about">
-                <h2 id="about-title">Professional Auto Collision & Paint Services</h2>
-                <p id="about-description">At 3Sixty, we provide comprehensive auto body repair and painting services. Our experienced team is dedicated to restoring your vehicle to its original condition with precision and care.</p>
-            </section>
-
-            <section class="contact">
-                <h2>Get In Touch</h2>
-                <div class="contact-grid" id="contact-grid">
-                </div>
-            </section>
-
-            <section class="location">
-                <h2>Find Us</h2>
-                <div class="location-container">
-                    <div class="map-placeholder" id="streetView">
-                        <div class="map-overlay">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <p>Interactive Street View</p>
-                            <button class="view-location-btn" onclick="loadStreetView()">View Location</button>
-                        </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 id="hero-title" class="hero-title">
+                        Auto Restoration with a 360° Approach
+                    </h1>
+                    <p class="hero-subtitle">
+                        Professional collision repair, paint matching, and complete auto restoration in Winter Haven.
+                        Insurance-friendly and OEM quality standards.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="html/estimates.html" class="btn btn-primary btn-large">Get Free Estimate</a>
+                        <a href="tel:4073078050" class="btn btn-secondary btn-large">Call (407) 307-8050</a>
                     </div>
                 </div>
-            </section>
-
-            <section class="services-preview">
-                <h2>Our Services</h2>
-                <div class="services-grid" id="services-grid">
-                </div>
-            </section>
-
-            <section class="testimonials" id="testimonials-section">
-                <h2 id="testimonials-title">What Our Customers Say</h2>
-                <p class="section-subtitle" id="testimonials-subtitle">Real feedback from our satisfied customers</p>
-                <div class="testimonials-grid" id="testimonials-grid">
-                </div>
-            </section>
-
-            <section class="gallery" id="gallery-section">
-                <h2 id="gallery-title">Our Work</h2>
-                <p class="section-subtitle" id="gallery-subtitle">See the quality of our collision repair and paint services</p>
-                <div class="gallery-grid" id="gallery-grid">
-                </div>
-            </section>
-        </main>
-
-        <footer class="footer">
-            <div class="footer-content">
-                <p id="footer-copyright">&copy; 2024 3Sixty Auto Collision & Paint. All rights reserved.</p>
-                <div class="social-links" id="social-links">
+                <div class="hero-image">
+                    <img src="assets/home_image_1.jpg" alt="Professional auto collision repair work in progress"
+                        style="width: 600px; height: 400px; loading: eager">
                 </div>
             </div>
-        </footer>
-    </div>
+        </section>
 
-    <div class="particles" id="particles"></div>
+        <!-- Trust Badges -->
+        <section class="trust-badges" aria-label="Quality guarantees and certifications">
+            <div class="container">
+                <div class="badges-grid">
+                    <div class="badge">
+                        <div class="badge-icon" aria-hidden="true"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Insurance-Friendly</h3>
+                        <p>Direct billing and coordination with all major insurers</p>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon" aria-hidden="true"><i class="fas fa-infinity"></i></div>
+                        <h3>Custom Paint</h3>
+                        <p>Guaranteed color match and finish durability</p>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon" aria-hidden="true"><i class="fas fa-bullseye"></i></div>
+                        <h3>OEM Standards</h3>
+                        <p>Factory-level quality using genuine parts</p>
+                    </div>
+                    <div class="badge">
+                        <div class="badge-icon" aria-hidden="true"><i class="fas fa-camera"></i></div>
+                        <h3>Photo Estimates</h3>
+                        <p>Fast, accurate quotes from your phone</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script src="config.js"></script>
-    <script src="script.js"></script>
+        <!-- Before/After Slider -->
+        <section class="before-after" aria-labelledby="before-after-title">
+            <div class="container">
+                <h2 id="before-after-title">See the 3Sixty Difference</h2>
+                <div class="slider-container">
+                    <div class="image-slider" role="img" aria-label="Before and after collision repair comparison">
+                        <img src="assets/difference/image1.png" alt="Vehicle before collision repair - damaged front end"
+                             class="slider-image slider-before" loading="lazy" width="800" height="600">
+                        <img src="assets/difference/image2.png" alt="Vehicle after professional collision repair - pristine condition"
+                             class="slider-image slider-after" loading="lazy" width="800" height="600">
+                        <div class="slider-handle" role="slider" aria-label="Drag to compare before and after"
+                             tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                            <div class="slider-line"></div>
+                            <div class="slider-button">
+                                <span aria-hidden="true">⟷</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-labels">
+                        <span class="label-before">Before</span>
+                        <span class="label-after">After</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Services -->
+        <section class="featured-services" aria-labelledby="services-title">
+            <div class="container">
+                <h2 id="services-title">Complete Auto Body Services</h2>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true"><i class="fas fa-tools"></i></div>
+                        <h3>Collision Repair</h3>
+                        <p>Complete structural repair using advanced frame straightening and OEM replacement parts.</p>
+                        <a href="html/services.html#collision" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true"><i class="fas fa-spray-can"></i></div>
+                        <h3>Paint & Color Matching</h3>
+                        <p>Precision color matching and professional paint application.</p>
+                        <a href="html/services.html#paint" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true"><i class="fas fa-hammer"></i></div>
+                        <h3>Dent Repair</h3>
+                        <p>Paintless dent repair and traditional bodywork to restore your vehicle's appearance.</p>
+                        <a href="html/services.html#dent" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true"><i class="fas fa-cog"></i></div>
+                        <h3>Frame Straightening</h3>
+                        <p>Advanced computerized frame alignment for structural integrity and safety.</p>
+                        <a href="html/services.html#frame" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true"><i class="fas fa-clipboard-check"></i></div>
+                        <h3>Insurance Claims</h3>
+                        <p>Complete insurance coordination and documentation to streamline your claim process.</p>
+                        <a href="html/insurance.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true"><i class="fas fa-car"></i></div>
+                        <h3>Panel Replacement</h3>
+                        <p>Expert removal and installation of damaged panels with precise fit and finish.</p>
+                        <a href="html/services.html#panel" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials" aria-labelledby="testimonials-title">
+            <div class="container">
+                <h2 id="testimonials-title">What Our Customers Say</h2>
+                <div class="testimonials-grid">
+                    <blockquote class="testimonial">
+                        <p>"My car was totaled in an accident, but 3Sixty brought it back to better than new condition. The paint job is flawless and you can't tell there was ever any damage. Insurance process was handled seamlessly."</p>
+                        <cite>
+                            <strong>Sarah Martinez</strong>
+                            <span>Orlando, FL</span>
+                        </cite>
+                    </blockquote>
+
+                    <blockquote class="testimonial">
+                        <p>"Professional work and honest pricing. They kept me updated throughout the entire repair process and finished ahead of schedule. The frame straightening was perfect - car drives like new."</p>
+                        <cite>
+                            <strong>Mike Thompson</strong>
+                            <span>Winter Park, FL</span>
+                        </cite>
+                    </blockquote>
+
+                    <blockquote class="testimonial">
+                        <p>"Excellent communication and craftsmanship. They worked directly with my insurance company and made sure everything was covered. The color match on my metallic paint is absolutely perfect."</p>
+                        <cite></cite>
+                            <strong>Jennifer Rodriguez</strong>
+                            <span></span>Kissimmee, FL</span>
+                        </cite>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insurance Partners -->
+        <section class="insurance-partners" aria-labelledby="partners-title">
+            <div class="container">
+                <h2 id="partners-title">Trusted by Leading Insurance Companies</h2>
+                <div class="partners-grid">
+                    <div class="partner-logo">
+                        <img src="assets/statefarm.png" alt="State Farm Insurance" loading="lazy" width="120" height="60">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="assets/geico.png" alt="GEICO Insurance" loading="lazy" width="120" height="60">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="assets/progressive.png" alt="Progressive Insurance" loading="lazy" width="120" height="60">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="assets/allstate.png" alt="Allstate Insurance" loading="lazy" width="120" height="60">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="assets/usaa.png" alt="USAA Insurance" loading="lazy" width="120" height="60">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 id="cta-title">Ready to Restore Your Vehicle?</h2>
+                    <p>Get a fast, accurate estimate and experience the 3Sixty difference. Professional results, guaranteed.</p>
+                    <div class="cta-buttons">
+                        <a href="html/estimates.html" class="btn btn-secondary btn-large">Get Free Estimate</a>
+                        <a href="tel:4073078050" class="btn btn-secondary btn-large">Call (407) 307-8050</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>3Sixty Auto Collision</h3>
+                    <p>Precision. Passion. Perfection. Every Time.</p>
+                    <div class="contact-info">
+                        <p><strong>Phone:</strong><a href="tel:4073078050"> (407) 307-8050</a></p>
+                        <p><strong>Address:</strong> 3911 Dundee Rd, Winter Haven, FL 33884</p>
+                        <p><strong>Hours:</strong> Mon-Fri 9AM-5PM, Sat Appointments Only, Sun Closed</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="html/services.html#collision">Collision Repair</a></li>
+                        <li><a href="html/services.html#paint">Paint & Color Matching</a></li>
+                        <li><a href="html/services.html#dent">Dent Repair</a></li>
+                        <li><a href="html/services.html#frame">Frame Straightening</a></li>
+                        <li><a href="html/insurance.html">Insurance Claims</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="html/about.html">About Us</a></li>
+                        <li><a href="html/gallery.html">Gallery</a></li>
+                        <li><a href="html/contact.html">Contact</a></li>
+                        <li><a href="html/estimates.html">Free Estimates</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="html/privacy.html">Privacy Policy</a></li>
+                        <li><a href="html/terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 3Sixty Auto Collision & Paint. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js" defer></script>
 </body>
 </html>

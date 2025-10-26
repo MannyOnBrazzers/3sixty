@@ -1,0 +1,380 @@
+{
+  "projects": [
+    {
+      "id": "mercedes_2016",
+      "title": "2016 Mercedes-Benz S550 ",
+      "description": "",
+      "category": "paint",
+      "tags": ["Paint Work", "Color Match"],
+      "images": [
+        {
+          "src": "../assets/projects/mercedes_2016/IMG_4794.webp",
+          "caption": "Final image of the completed paint job"        },
+        {
+          "src": "../assets/projects/mercedes_2016/IMG_4638.webp",
+          "caption": "Vehicle's original state"
+        },
+        {
+          "src": "../assets/projects/mercedes_2016/IMG_4680.webp",
+          "caption": "Scuffed Front"
+        },
+        {
+          "src": "../assets/projects/mercedes_2016/IMG_4684.webp",
+          "caption": "Scuffed Rear"
+        },
+        {
+          "src": "../assets/projects/mercedes_2016/IMG_4780.webp",
+          "caption": "Painting"
+        },
+        {
+          "src": "../assets/projects/mercedes_2016/IMG_4786.webp",
+          "caption": "Post Paint Finish, Parts Assembly"
+        }
+      ],
+      "progressCount": "6 Progress Photos"
+    },
+    {
+      "id": "mercedes_2017",
+      "title": "2017 Mercedes-Benz GLE ",
+      "description": "",
+      "category": "paint",
+      "tags": ["Paint Work", "Color Match"],
+      "images": [
+        {
+          "src": "../assets/projects/mercedes_2017/IMG_4901.webp",
+          "caption": "Final image of the completed paint job"
+        },
+        {
+          "src": "../assets/projects/mercedes_2017/IMG_4858.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/mercedes_2017/IMG_4865.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/mercedes_2017/IMG_4875.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/mercedes_2017/IMG_4900.webp",
+          "caption": "Post Paint Finish, Parts Assembly"
+        }
+      ],
+      "progressCount": "5 Progress Photos"
+    },
+    {
+      "id": "toyota_solara",
+      "title": "Toyota Solara",
+      "description": "",
+      "category": "collision",
+      "tags": ["Paint Work", "Color Match"],
+      "images": [
+        {
+          "src": "../assets/projects/toyota_solara/IMG_0043.webp",
+          "caption": "Final image of the restoration"
+        },
+        {
+          "src": "../assets/projects/toyota_solara/IMG_0777.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/toyota_solara/IMG_0775.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/toyota_solara/IMG_0038.webp",
+          "caption": ""
+        }
+      ],
+      "progressCount": "4 Progress Photos"
+    },
+    {
+      "id": "infiniti_fx35",
+      "title": "Infiniti FX35",
+      "description": "",
+      "category": "paint",
+      "tags": ["Paint Work", "Color Match"],
+      "images": [
+        {
+          "src": "../assets/projects/infiniti_fx35/IMG_2315.jpg",
+          "caption": "Final image of the restoration"
+        },
+        {
+          "src": "../assets/projects/infiniti_fx35/IMG_2304.jpg",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/infiniti_fx35/IMG_2309.jpg",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/infiniti_fx35/IMG_2316.jpg",
+          "caption": ""
+        }
+      ],
+      "progressCount": "4 Progress Photos"
+    },
+    {
+      "id": "dodgeram_2016",
+      "title": "Dodge Ram",
+      "description": "",
+      "category": "paint",
+      "tags": ["Paint Work", "Color Match"],
+      "images": [
+        {
+          "src": "../assets/projects/dodgeram_2016/IMG_2076.webp",
+          "caption": "Final image of the restoration"
+        },
+        {
+          "src": "../assets/projects/dodgeram_2016/IMG_2068.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/dodgeram_2016/IMG_2066.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/dodgeram_2016/IMG_2075.webp",
+          "caption": ""
+        }
+      ],
+      "progressCount": "4 Progress Photos"
+    },
+    {
+      "id": "toyota_camry",
+      "title": "Toyota Camry",
+      "description": "",
+      "category": "paint",
+      "tags": ["Paint Work", "Color Match"],
+      "images": [
+        {
+          "src": "../assets/projects/toyota_camry/image1.webp",
+          "caption": "Final image of the restoration"
+        },
+        {
+          "src": "../assets/projects/toyota_camry/image2.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/toyota_camry/image3.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/toyota_camry/image4.webp",
+          "caption": ""
+        }
+      ],
+      "progressCount": "4 Progress Photos"
+    },
+    {
+      "id": "bmw_blue",
+      "title": "BMW M3",
+      "description": "",
+      "category": "paint",
+      "tags": ["Paint Work", "Color Match"],
+      "images": [
+        {
+          "src": "../assets/projects/bmw_blue/image1.webp",
+          "caption": "Final image of the restoration"
+        },
+        {
+          "src": "../assets/projects/bmw_blue/image2.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/bmw_blue/image3.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/bmw_blue/image4.webp",
+          "caption": ""
+        }
+      ],
+      "progressCount": "4 Progress Photos"
+    },
+    {
+      "id": "harley",
+      "title": "Harley Davidson",
+      "description": "",
+      "category": "paint",
+      "tags": ["Paint Work", "Color Match"],
+      "images": [
+        {
+          "src": "../assets/projects/harley/image1.webp",
+          "caption": "Final image of the restoration"
+        },
+        {
+          "src": "../assets/projects/harley/image2.webp",
+          "caption": ""
+        }
+      ],
+      "progressCount": "2 Progress Photos"
+    },
+    {
+      "id": "honda_crv",
+      "title": "Honda CRV",
+      "description": "",
+      "category": "paint",
+      "tags": ["Paint Work", "Color Match"],
+      "images": [
+        {
+          "src": "../assets/projects/honda_crv/image1.webp",
+          "caption": "Final image of the restoration"
+        },
+        {
+          "src": "../assets/projects/honda_crv/image2.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/honda_crv/image3.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/honda_crv/image4.webp",
+          "caption": ""
+        }
+      ],
+      "progressCount": "4 Progress Photos"
+    },
+    {
+      "id": "dodge_c",
+      "title": "Dodge Charger",
+      "description": "",
+      "category": "paint",
+      "tags": ["Paint Work", "Color Match"],
+      "images": [
+        {
+          "src": "../assets/projects/dodge_charger/image1.webp",
+          "caption": "Final image of the restoration"
+        },
+        {
+          "src": "../assets/projects/dodge_charger/image2.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/dodge_charger/image3.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/dodge_charger/image4.webp",
+          "caption": ""
+        }
+      ],
+      "progressCount": "4 Progress Photos"
+    },
+    {
+      "id": "chevy_sonic",
+      "title": "Chevrolet Sonic",
+      "description": "",
+      "category": "collision",
+      "tags": ["Collision Repair", "Panel Replace"],
+      "images": [
+        {
+          "src": "../assets/projects/chevy_sonic/image1.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/chevy_sonic/image2.webp",
+          "caption": "Final image of the restoration"
+        }
+      ],
+      "progressCount": "2 Progress Photos"
+    },
+    {
+      "id": "nissan_maxima",
+      "title": "Nissan Maxima",
+      "description": "",
+      "category": "collision",
+      "tags": ["Collision Repair", "Panel Replace"],
+      "images": [
+        {
+          "src": "../assets/projects/nissan_maxima/image1.png",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/nissan_maxima/image2.png",
+          "caption": "Final image of the restoration"
+        }
+      ],
+      "progressCount": "2 Progress Photos"
+    },
+    {
+      "id": "idk_green",
+      "title": "",
+      "description": "",
+      "category": "restoration",
+      "tags": ["Full Restoration", "Classic Car"],
+      "images": [
+        {
+          "src": "../assets/projects/idk_green/image1.png",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/idk_green/image2.png",
+          "caption": "Final image of the restoration"
+        }
+      ],
+      "progressCount": "2 Progress Photos"
+    },
+    {
+      "id": "ford_f150",
+      "title": "Ford F150",
+      "description": "",
+      "category": "restoration",
+      "tags": ["Full Restoration"],
+      "images": [
+        {
+          "src": "../assets/projects/ford_f150/image1.webp",
+          "caption": ""
+        }
+      ],
+      "progressCount": "1 Progress Photo"
+    },
+    {
+      "id": "chevy_equinox",
+      "title": "Chevrolet Equinox",
+      "description": "",
+      "category": "collision",
+      "tags": ["Collision Repair"],
+      "images": [
+        {
+          "src": "../assets/projects/chevy_equinox/image1.webp",
+          "caption": ""
+        },
+        {
+          "src": "../assets/projects/chevy_equinox/image2.webp",
+          "caption": ""
+        }
+      ],
+      "progressCount": "2 Progress Photos"
+    }
+  ],
+  "categories": [
+    {
+      "id": "all",
+      "name": "All Projects",
+      "description": "Show all gallery projects"
+    },
+    {
+      "id": "collision",
+      "name": "Collision Repair",
+      "description": "Accident damage repair and restoration"
+    },
+    {
+      "id": "paint",
+      "name": "Paint Work",
+      "description": "Custom paint jobs and restoration"
+    },
+    {
+      "id": "restoration",
+      "name": "Full Restoration",
+      "description": "Complete vehicle restoration projects"
+    },
+    {
+      "id": "dent",
+      "name": "Dent Repair",
+      "description": "Paintless dent repair services"
+    }
+  ]
+}
