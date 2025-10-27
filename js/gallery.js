@@ -128,9 +128,36 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalImage = document.getElementById('modalImage');
         const imageCounter = document.getElementById('imageCounter');
 
-        modalTitle.textContent = projectInfo.title;
-        modalImage.src = projectInfo.images[0].src;
-        modalImage.alt = projectInfo.images[0].caption;
+
+        if (window.innerWidth > 768) {
+            modalTitle.textContent = projectInfo.title;
+        }
+
+        modalImage.classList.add('loading');
+
+        if (window.innerWidth <= 768) {
+            const modalMain = modal.querySelector('.modal-main');
+            modalMain.style.setProperty('--show-swipe-hint', '1');
+            modalMain.style.setProperty('--show-close-hint', '1');
+
+            setTimeout(() => {
+                modalMain.style.setProperty('--show-close-hint', '0');
+            }, 8000);
+        }
+
+        const firstImage = new Image();
+        firstImage.onload = function() {
+            modalImage.src = projectInfo.images[0].src;
+            modalImage.alt = projectInfo.images[0].caption;
+            setTimeout(() => {
+                modalImage.classList.remove('loading');
+            }, 50);
+        };
+        firstImage.onerror = function() {
+            modalImage.classList.remove('loading');
+        };
+        firstImage.src = projectInfo.images[0].src;
+
         imageCounter.textContent = `1 / ${projectInfo.images.length}`;
 
         modal.setAttribute('aria-hidden', 'false');
@@ -140,7 +167,10 @@ document.addEventListener('DOMContentLoaded', function() {
         window.currentProject = projectInfo;
         window.currentImageIndex = 0;
 
-        updateTimeline();
+
+        if (window.innerWidth > 768) {
+            updateTimeline();
+        }
         updateNavigationButtons();
 
         const closeBtn = modal.querySelector('.modal-close');
@@ -176,6 +206,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
 
+        const modalMain = modal.querySelector('.modal-main');
+        if (modalMain) {
+            modalMain.onclick = function(e) {
+                if (e.target === modalMain) {
+                    closeModal();
+                }
+            };
+        }
+
         const modalContent = modal.querySelector('.modal-content');
         if (modalContent) {
             modalContent.onclick = function(e) {
@@ -205,6 +244,86 @@ document.addEventListener('DOMContentLoaded', function() {
         document.removeEventListener('keydown', window.galleryKeydownHandler);
         window.galleryKeydownHandler = keydownHandler;
         document.addEventListener('keydown', keydownHandler);
+
+        setupTouchNavigation(modal);
+    }
+
+    function setupTouchNavigation(modal) {
+        const modalMain = modal.querySelector('.modal-main');
+        if (!modalMain) return;
+
+        let startX = null;
+        let startY = null;
+        let isDragging = false;
+        let startTime = null;
+        let hasInteracted = false;
+        let lastTapTime = 0;
+        let tapCount = 0;
+
+        modalMain.addEventListener('touchstart', function(e) {
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            startTime = Date.now();
+            isDragging = false;
+
+            const currentTime = Date.now();
+            if (currentTime - lastTapTime < 300) {
+                tapCount++;
+            } else {
+                tapCount = 1;
+            }
+            lastTapTime = currentTime;
+        }, { passive: true });
+
+        modalMain.addEventListener('touchmove', function(e) {
+            if (!startX || !startY) return;
+
+            const touch = e.touches[0];
+            const diffX = Math.abs(touch.clientX - startX);
+            const diffY = Math.abs(touch.clientY - startY);
+
+            if (diffX > 5 || diffY > 5) {
+                isDragging = true;
+            }
+
+            if (diffX > diffY && diffX > 20) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        modalMain.addEventListener('touchend', function(e) {
+            if (!startX || !startY) return;
+
+            const touch = e.changedTouches[0];
+            const diffX = touch.clientX - startX;
+            const diffY = Math.abs(touch.clientY - startY);
+            const timeDiff = Date.now() - startTime;
+
+            if (Math.abs(diffX) < 10 && diffY < 10 && timeDiff < 200 && tapCount >= 2) {
+                closeModal();
+                return;
+            }
+
+            if (Math.abs(diffX) > 30 && diffY < 100 && timeDiff < 500 && isDragging) {
+                if (!hasInteracted) {
+                    hasInteracted = true;
+                    modalMain.style.setProperty('--show-swipe-hint', '0');
+                    modalMain.style.setProperty('--show-close-hint', '0');
+                }
+
+                if (diffX > 0) {
+                    showPreviousImage();
+                } else {
+                    showNextImage();
+                }
+            }
+
+            startX = null;
+            startY = null;
+            startTime = null;
+            isDragging = false;
+        }, { passive: true });
     }
 
     function closeModal() {
@@ -215,6 +334,12 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = '';
             window.currentProject = null;
             window.currentImageIndex = 0;
+
+            const modalMain = modal.querySelector('.modal-main');
+            if (modalMain) {
+                modalMain.style.removeProperty('--show-swipe-hint');
+                modalMain.style.removeProperty('--show-close-hint');
+            }
 
             if (window.galleryKeydownHandler) {
                 document.removeEventListener('keydown', window.galleryKeydownHandler);
@@ -243,11 +368,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const imageCounter = document.getElementById('imageCounter');
         const currentImage = window.currentProject.images[window.currentImageIndex];
 
-        modalImage.src = currentImage.src;
-        modalImage.alt = currentImage.caption;
+
+        modalImage.classList.add('loading');
+
+        const newImage = new Image();
+        newImage.onload = function() {
+            modalImage.src = currentImage.src;
+            modalImage.alt = currentImage.caption;
+            setTimeout(() => {
+                modalImage.classList.remove('loading');
+            }, 50);
+        };
+        newImage.onerror = function() {
+            modalImage.classList.remove('loading');
+        };
+        newImage.src = currentImage.src;
+
         imageCounter.textContent = `${window.currentImageIndex + 1} / ${window.currentProject.images.length}`;
 
-        updateTimeline();
+
+        if (window.innerWidth > 768) {
+            updateTimeline();
+        }
         updateNavigationButtons();
     }
 
@@ -268,6 +410,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateTimeline() {
+        if (window.innerWidth <= 768) return;
+
         if (!window.currentProject) return;
 
         const timeline = document.getElementById('progressTimeline');
