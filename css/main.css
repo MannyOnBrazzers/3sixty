@@ -216,7 +216,6 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-/* Layout */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -235,7 +234,6 @@ a:focus-visible {
   }
 }
 
-/* Button System */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -301,7 +299,6 @@ a:focus-visible {
   box-shadow: none;
 }
 
-/* Header & Navigation */
 .header {
   position: sticky;
   top: 0;
@@ -430,7 +427,6 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
-/* Mobile Navigation */
 @media (max-width: 768px) {
   .nav-toggle {
     display: block;
@@ -468,7 +464,6 @@ a:focus-visible {
   }
 }
 
-/* Hero Section */
 .hero {
   padding: var(--space-20) 0;
   background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-gray-100) 100%);
@@ -541,7 +536,6 @@ a:focus-visible {
   }
 }
 
-/* Trust Badges */
 .trust-badges {
   padding: var(--space-20) 0;
   background-color: var(--color-surface);
@@ -583,7 +577,6 @@ a:focus-visible {
   margin-bottom: 0;
 }
 
-/* Before/After Slider */
 .before-after {
   padding: var(--space-20) 0;
 }
@@ -706,7 +699,6 @@ a:focus-visible {
   transform: translateX(4px);
 }
 
-/* Testimonials */
 .testimonials {
   padding: var(--space-20) 0;
 }
@@ -760,7 +752,6 @@ a:focus-visible {
   margin-top: var(--space-1);
 }
 
-/* Insurance Partners */
 .insurance-partners {
   padding: var(--space-16) 0;
   background-color: var(--color-surface);
@@ -804,7 +795,6 @@ a:focus-visible {
   opacity: 1;
 }
 
-/* CTA Section */
 .cta-section {
   padding: var(--space-20) 0;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
@@ -853,7 +843,6 @@ a:focus-visible {
   color: var(--color-primary);
 }
 
-/* Footer */
 .footer {
   background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-gray-100) 100%);
   color: var(--color-gray-300);
@@ -904,16 +893,47 @@ a:focus-visible {
   color: var(--color-gray-400);
 }
 
-/* Theme Toggle (moved to nav) */
+.social-links {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--color-primary);
+  color: white !important;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: var(--font-size-lg);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-base);
+}
+
+.social-link:hover {
+  background: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  color: white !important;
+}
+
+.social-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .theme-toggle {
-  display: none; /* Hidden since it's now in nav */
+  display: none;
 }
 
 .theme-icon {
   font-size: var(--font-size-base);
 }
 
-/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -942,7 +962,6 @@ a:focus-visible {
   animation: fadeIn 0.6s ease-out both;
 }
 
-/* Intersection Observer Animations */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px);
@@ -954,7 +973,6 @@ a:focus-visible {
   transform: translateY(0);
 }
 
-/* Utility Classes */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -999,7 +1017,6 @@ a:focus-visible {
   display: grid;
 }
 
-/* Focus Management */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -1016,7 +1033,6 @@ a:focus-visible {
   top: 6px;
 }
 
-/* Print Styles */
 @media print {
   .header,
   .footer,
@@ -1042,7 +1058,6 @@ a:focus-visible {
   }
 }
 
-/* High Contrast Mode */
 @media (prefers-contrast: high) {
   :root {
     --color-primary: #000000;
@@ -1059,7 +1074,6 @@ a:focus-visible {
   }
 }
 
-/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1070,8 +1084,6 @@ a:focus-visible {
     scroll-behavior: auto !important;
   }
 }
-
-/* FAQ Styles */
 
 .faq-grid {
   display: grid;
@@ -1126,7 +1138,6 @@ a:focus-visible {
   }
 }
 
-/* FAQ Styles */
 .faq-section {
   padding: var(--space-20) 0;
   background: var(--color-surface);
@@ -1218,5 +1229,22 @@ a:focus-visible {
 
   .faq-answer p {
     padding: 0 var(--space-4) var(--space-4);
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+    gap: var(--space-6);
+  }
+
+  .social-link {
+    width: 48px;
+    height: 48px;
+    font-size: var(--font-size-xl);
   }
 }
