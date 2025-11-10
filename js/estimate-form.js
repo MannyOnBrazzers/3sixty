@@ -513,9 +513,9 @@ class EstimateFormHandler {
 
     } catch (error) {
       console.error('Form submission error:', error);
-      
+
       let errorMessage = 'There was an error submitting your request. Please try again.';
-      
+
       if (error.message.includes('Connection error')) {
         errorMessage = 'Connection error. Please check your internet connection and try again, or call us directly at <a href="tel:4073078050">(407) 307-8050</a>.';
       } else if (error.message.includes('Form submission failed')) {
@@ -523,7 +523,7 @@ class EstimateFormHandler {
       } else {
         errorMessage = 'There was an error submitting your request. Please try again or call us directly at <a href="tel:4073078050">(407) 307-8050</a>.';
       }
-      
+
       this.showError(errorMessage);
     } finally {
       this.submitBtn.textContent = 'Submit Estimate Request';
@@ -533,40 +533,55 @@ class EstimateFormHandler {
 
   async submitEstimateRequest(formData) {
     try {
-      // Get the form element to get the action URL
-      const form = document.querySelector('.estimate-form');
-      const actionUrl = form.getAttribute('action');
-      
-      // Submit to Formspree
-      const response = await fetch(actionUrl, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+      // Convert FormData to regular object for EmailJS
+      const templateParams = {};
 
-      if (response.ok) {
-        return { success: true };
-      } else {
-        const errorData = await response.json();
-        return { 
-          success: false, 
-          message: errorData.error || 'Form submission failed'
-        };
+      // Add all form fields
+      for (let [key, value] of formData.entries()) {
+        if (key.startsWith('photo_')) {
+          // Skip file uploads for now - EmailJS doesn't handle files directly
+          continue;
+        }
+        templateParams[key] = value;
       }
+
+      console.log('Sending estimate request with params:', templateParams);
+
+      // Initialize EmailJS if not already done
+      if (typeof emailjs === 'undefined') {
+        throw new Error('EmailJS not loaded');
+      }
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        'service_f3qja94',        // Your EmailJS service ID
+        'template_estimate',      // Your EmailJS estimate template ID
+        templateParams,
+        'd1oDyRp2DnFaQhbJr'      // Your EmailJS public key
+      );
+
+      console.log('Estimate request sent successfully:', result);
+      return { success: true };
+
     } catch (error) {
       console.error('Estimate submission error:', error);
-      
-      if (error.message.includes('Failed to fetch') || !navigator.onLine) {
-        return { 
-          success: false, 
+
+      if (!navigator.onLine) {
+        return {
+          success: false,
           message: 'Connection error. Please check your internet connection and try again.'
         };
       }
-      
-      return { 
-        success: false, 
+
+      if (error.message.includes('EmailJS not loaded')) {
+        return {
+          success: false,
+          message: 'Email service not available. Please try again or call us directly.'
+        };
+      }
+
+      return {
+        success: false,
         message: 'There was an error submitting your request. Please try again or call us directly.'
       };
     }

@@ -26,7 +26,10 @@
     <link rel="stylesheet" href="../css/contact.css">
 
     <!--Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <!-- JSON-LD Schema -->
     <script type="application/ld+json">
@@ -166,7 +169,7 @@
                     <!-- Contact Form -->
                     <div class="contact-form-container">
                         <h2>Send Us a Message</h2>
-                        <form class="contact-form" action="https://formspree.io/f/mvgdpnpw" method="POST" data-validate novalidate>
+                        <form class="contact-form" data-validate novalidate>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="firstName">First Name <span class="required">*</span></label>
@@ -193,11 +196,11 @@
                                 <label for="subject">Subject</label>
                                 <select id="subject" name="subject">
                                     <option value="">Select a topic</option>
-                                    <option value="estimate">Free Estimate Request</option>
-                                    <option value="insurance">Insurance Claim</option>
-                                    <option value="service">Service Question</option>
-                                    <option value="appointment">Schedule Appointment</option>
-                                    <option value="other">Other</option>
+                                    <option value="Free Estimate">Free Estimate Request</option>
+                                    <option value="Insurance Claim">Insurance Claim</option>
+                                    <option value="Service Question">Service Question</option>
+                                    <option value="Schedule Appointment">Schedule Appointment</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
 

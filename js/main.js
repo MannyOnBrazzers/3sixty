@@ -918,51 +918,51 @@ class FormValidation {
 
   async sendEmail(formData, form) {
     try {
-      // Get the form's action URL for Formspree
-      const actionUrl = form.getAttribute('action');
+      // Convert FormData to regular object for EmailJS
+      const templateParams = {};
 
-      if (!actionUrl || !actionUrl.includes('formspree.io')) {
-        throw new Error('Form not configured for Formspree');
+      for (let [key, value] of formData.entries()) {
+        templateParams[key] = value;
       }
 
-      // Submit to Formspree
-      const response = await fetch(actionUrl, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+      console.log('Sending email with params:', templateParams);
 
-      if (response.ok) {
-        return { success: true };
-      } else {
-        const errorData = await response.json();
-        return {
-          success: false,
-          message: errorData.error || 'Form submission failed'
-        };
+      // Initialize EmailJS if not already done
+      if (typeof emailjs === 'undefined') {
+        throw new Error('EmailJS not loaded');
       }
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        'service_f3qja94',        // Your EmailJS service ID
+        'template_contact',       // Your EmailJS template ID
+        templateParams,
+        'd1oDyRp2DnFaQhbJr'      // Your EmailJS public key
+      );
+
+      console.log('Email sent successfully:', result);
+      return { success: true };
+
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('Email submission error:', error);
 
-      if (error.message.includes('Failed to fetch') || !navigator.onLine) {
+      if (!navigator.onLine) {
         return {
           success: false,
           message: 'Connection error. Please check your internet connection and try again.'
         };
       }
 
-      if (error.message.includes('Form not configured')) {
+      if (error.message.includes('EmailJS not loaded')) {
         return {
           success: false,
-          message: 'Form configuration error. Please call us directly.'
+          message: 'Email service not available. Please try again or call us directly.'
         };
       }
 
       return {
         success: false,
-        message: 'There was an error submitting your request. Please try again.'
+        message: 'There was an error sending your message. Please try again or call us directly.'
       };
     }
   }
