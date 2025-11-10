@@ -431,17 +431,28 @@ class EstimateFormHandler {
   }
 
   showError(message) {
+    // Clear any existing error messages
+    const existingErrors = document.querySelectorAll('.form-message.error');
+    existingErrors.forEach(error => error.remove());
+
     const errorDiv = document.createElement('div');
     errorDiv.className = 'form-message error';
-    errorDiv.textContent = message;
+    errorDiv.innerHTML = `
+      <i class="fas fa-exclamation-triangle"></i>
+      <span>${message}</span>
+    `;
     errorDiv.setAttribute('role', 'alert');
 
     const currentStep = document.querySelector(`[data-step="${this.currentStep}"]`);
     currentStep.insertBefore(errorDiv, currentStep.firstChild);
 
+    // Scroll to error message
+    errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Remove error message after 10 seconds
     setTimeout(() => {
       errorDiv.remove();
-    }, 5000);
+    }, 10000);
   }
 
   async handleSubmit(e) {
@@ -501,8 +512,19 @@ class EstimateFormHandler {
       }
 
     } catch (error) {
-      this.showError('There was an error submitting your request. Please try again.');
       console.error('Form submission error:', error);
+      
+      let errorMessage = 'There was an error submitting your request. Please try again.';
+      
+      if (error.message.includes('Connection error')) {
+        errorMessage = 'Connection error. Please check your internet connection and try again, or call us directly at <a href="tel:4073078050">(407) 307-8050</a>.';
+      } else if (error.message.includes('Form submission failed')) {
+        errorMessage = 'Form configuration error. Please call us directly at <a href="tel:4073078050">(407) 307-8050</a> or email <a href="mailto:3sixtyautocollision@gmail.com">3sixtyautocollision@gmail.com</a>.';
+      } else {
+        errorMessage = 'There was an error submitting your request. Please try again or call us directly at <a href="tel:4073078050">(407) 307-8050</a>.';
+      }
+      
+      this.showError(errorMessage);
     } finally {
       this.submitBtn.textContent = 'Submit Estimate Request';
       this.submitBtn.disabled = false;
@@ -510,26 +532,44 @@ class EstimateFormHandler {
   }
 
   async submitEstimateRequest(formData) {
-    console.log('Estimate request data:', Object.fromEntries(formData));
+    try {
+      // Get the form element to get the action URL
+      const form = document.querySelector('.estimate-form');
+      const actionUrl = form.getAttribute('action');
+      
+      // Submit to Formspree
+      const response = await fetch(actionUrl, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    return { success: true };
-
-    // Real implementation examples:
-
-    // Using fetch API:
-    // const response = await fetch('/api/estimates', {
-    //   method: 'POST',
-    //   body: formData
-    // });
-    // return response.json();
-
-    // Using EmailJS for email-based submissions:
-    // const templateParams = Object.fromEntries(formData);
-    // return emailjs.send('service_id', 'template_id', templateParams)
-    //   .then(() => ({ success: true }))
-    //   .catch(error => ({ success: false, message: error.text }));
+      if (response.ok) {
+        return { success: true };
+      } else {
+        const errorData = await response.json();
+        return { 
+          success: false, 
+          message: errorData.error || 'Form submission failed'
+        };
+      }
+    } catch (error) {
+      console.error('Estimate submission error:', error);
+      
+      if (error.message.includes('Failed to fetch') || !navigator.onLine) {
+        return { 
+          success: false, 
+          message: 'Connection error. Please check your internet connection and try again.'
+        };
+      }
+      
+      return { 
+        success: false, 
+        message: 'There was an error submitting your request. Please try again or call us directly.'
+      };
+    }
   }
 
   showSuccessMessage() {
