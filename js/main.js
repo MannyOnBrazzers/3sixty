@@ -736,7 +736,7 @@ class Gallery {
 
 class FormValidation {
   constructor() {
-    this.forms = document.querySelectorAll('form[data-validate]');
+    this.forms = document.querySelectorAll('form[data-validate]:not(.estimate-form)');
     this.init();
   }
 
@@ -888,14 +888,18 @@ class FormValidation {
 
   async submitForm(form) {
     const submitBtn = form.querySelector('[type="submit"]');
-    const originalText = submitBtn.textContent;
+    const originalText = submitBtn.innerHTML;
 
-    submitBtn.textContent = 'Sending...';
+    // Clear any existing messages
+    const existingMessages = document.querySelectorAll('.form-message');
+    existingMessages.forEach(msg => msg.remove());
+
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
 
     try {
       const formData = new FormData(form);
-      const result = await this.sendEmail(formData);
+      const result = await this.sendEmail(formData, form);
 
       if (result.success) {
         this.showSuccessMessage(form);
@@ -904,59 +908,118 @@ class FormValidation {
         this.showErrorMessage(form, result.message);
       }
     } catch (error) {
-      this.showErrorMessage(form, 'An error occurred. Please try again.');
+      console.error('Unexpected error:', error);
+      this.showErrorMessage(form, 'An unexpected error occurred. Please try again.');
     } finally {
-      submitBtn.textContent = originalText;
+      submitBtn.innerHTML = originalText;
       submitBtn.disabled = false;
     }
   }
 
-  async sendEmail(formData) {
-    console.log('Form data:', Object.fromEntries(formData));
+  async sendEmail(formData, form) {
+    try {
+      // Get the form's action URL for Formspree
+      const actionUrl = form.getAttribute('action');
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+      if (!actionUrl || !actionUrl.includes('formspree.io')) {
+        throw new Error('Form not configured for Formspree');
+      }
 
-    return { success: true };
+      // Submit to Formspree
+      const response = await fetch(actionUrl, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
 
-    // Real implementation examples:
+      if (response.ok) {
+        return { success: true };
+      } else {
+        const errorData = await response.json();
+        return {
+          success: false,
+          message: errorData.error || 'Form submission failed'
+        };
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
 
-    // Using EmailJS:
-    // return emailjs.send('service_id', 'template_id', Object.fromEntries(formData))
-    //   .then(() => ({ success: true }))
-    //   .catch(error => ({ success: false, message: error.text }));
+      if (error.message.includes('Failed to fetch') || !navigator.onLine) {
+        return {
+          success: false,
+          message: 'Connection error. Please check your internet connection and try again.'
+        };
+      }
 
-    // Using custom backend:
-    // const response = await fetch('/api/send-email', {
-    //   method: 'POST',
-    //   body: formData
-    // });
-    // return response.json();
+      if (error.message.includes('Form not configured')) {
+        return {
+          success: false,
+          message: 'Form configuration error. Please call us directly.'
+        };
+      }
+
+      return {
+        success: false,
+        message: 'There was an error submitting your request. Please try again.'
+      };
+    }
   }
 
   showSuccessMessage(form) {
     const message = document.createElement('div');
     message.className = 'form-message success';
-    message.textContent = 'Thank you! Your message has been sent successfully.';
+    message.innerHTML = `
+      <i class="fas fa-check-circle"></i>
+      <strong>Message sent successfully!</strong> We'll get back to you within 24 hours.
+    `;
     message.setAttribute('role', 'alert');
 
     form.parentNode.insertBefore(message, form);
 
+    // Scroll to success message
+    message.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
     setTimeout(() => {
       message.remove();
-    }, 5000);
+    }, 10000);
   }
 
   showErrorMessage(form, errorText) {
     const message = document.createElement('div');
     message.className = 'form-message error';
-    message.textContent = errorText;
+
+    // Enhanced error messages with helpful fallbacks
+    let enhancedMessage = errorText;
+    if (errorText.includes('Connection error')) {
+      enhancedMessage = `
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong>Connection error.</strong> Please check your internet connection and try again, or call us directly at <a href="tel:4073078050">(407) 307-8050</a>.
+      `;
+    } else if (errorText.includes('Form configuration error')) {
+      enhancedMessage = `
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong>Form configuration error.</strong> Please call us directly at <a href="tel:4073078050">(407) 307-8050</a> or email <a href="mailto:3sixtyautocollision@gmail.com">3sixtyautocollision@gmail.com</a>.
+      `;
+    } else {
+      enhancedMessage = `
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong>Error sending message.</strong> Please try again or call us directly at <a href="tel:4073078050">(407) 307-8050</a>.
+      `;
+    }
+
+    message.innerHTML = enhancedMessage;
     message.setAttribute('role', 'alert');
 
     form.parentNode.insertBefore(message, form);
 
+    // Scroll to error message
+    message.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
     setTimeout(() => {
       message.remove();
-    }, 5000);
+    }, 15000);
   }
 }
 
