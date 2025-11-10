@@ -684,7 +684,6 @@ a:focus-visible {
 .slider-before {
   z-index: 2;
   clip-path: inset(0 50% 0 0);
-  transition: clip-path var(--transition-fast);
 }
 
 .slider-handle {

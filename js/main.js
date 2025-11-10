@@ -396,7 +396,6 @@ class BeforeAfterSlider {
 
     this.bindEvents();
     this.updateSlider(this.currentX);
-    this.beforeImage.classList.add('smooth-transition');
   }
 
   bindEvents() {
@@ -417,7 +416,6 @@ class BeforeAfterSlider {
     this.isDragging = true;
     this.startX = this.getEventX(e);
     this.handle.classList.add('dragging');
-    this.beforeImage.classList.remove('smooth-transition');
 
     document.body.style.userSelect = 'none';
 
@@ -432,13 +430,7 @@ class BeforeAfterSlider {
     const percentage = ((x - rect.left) / rect.width) * 100;
 
     this.currentX = Math.max(0, Math.min(100, percentage));
-
-    if (!this.animationFrame) {
-      this.animationFrame = requestAnimationFrame(() => {
-        this.updateSlider(this.currentX);
-        this.animationFrame = null;
-      });
-    }
+    this.updateSlider(this.currentX);
 
     e.preventDefault();
   }
@@ -448,7 +440,6 @@ class BeforeAfterSlider {
 
     this.isDragging = false;
     this.handle.classList.remove('dragging');
-    this.beforeImage.classList.add('smooth-transition');
     document.body.style.userSelect = '';
   }
 
@@ -486,7 +477,6 @@ class BeforeAfterSlider {
     const percentage = ((e.clientX - rect.left) / rect.width) * 100;
 
     this.currentX = Math.max(0, Math.min(100, percentage));
-    this.beforeImage.classList.add('smooth-transition');
     this.updateSlider(this.currentX);
     this.handle.setAttribute('aria-valuenow', Math.round(this.currentX));
   }
